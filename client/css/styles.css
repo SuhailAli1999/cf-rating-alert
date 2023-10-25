@@ -1,0 +1,86 @@
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.form {
+    padding: 25px 0px;
+}
+
+.text {
+    color: #3b5998;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 0.75rem 0.5rem;
+}
+
+.input {
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.label {
+    display: inline-block;
+    width: 80px;
+}
+
+input {
+    display: inline-block;
+    padding: 0.1rem;
+    font-size: 1rem;
+}
+
+.btn-group {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.btn-group button {
+    padding: 0 1em;
+    margin: 1em 1em 0;
+    height: 2em;
+    font-size: 0.9rem;
+}
+
+.alert {
+    padding: 10px;
+    background-color: #FEEFB3;
+    color: #9F6000;
+}
+
+.alert span {
+    text-align: left;
+}
+
+.step {
+    color: black;
+}
+
+#error{
+    display: none;
+    padding: 10px;
+    background-color: #f36464;
+    color: #000000;
+    font-weight: bold;
+}
+
+@media (max-width: 575.98px) {
+    .img {
+        width: 85%;
+    }
+}

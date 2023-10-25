@@ -1,0 +1,14 @@
+const variables = ( (req, res, next) => {
+
+    console.log("#########")
+    console.log(req.body.handle);
+    console.log("#########")
+
+    if(req.body.handle != undefined){
+      req.handle = req.body.handle ;
+    }
+  
+    next();
+  });
+
+module.exports = variables;

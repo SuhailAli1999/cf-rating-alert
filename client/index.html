@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/client/css/styles.css">
+  <link rel="icon" type="image/x-icon" href="/client/img/logo.png">
+</head>
+<body>
+    <a href="http://127.0.0.1:5500/client/index.html">
+        <img class="img" src="/client/img/logo.png" alt="logo">
+    </a>
+    <div class="container">
+        <div>
+            <div class="text">Get notified via email whenever your rating changes after the contest</div>
+        </div>
+        <hr>
+        <form class="form" id="form">
+            <div class="input">
+                <div class="label">Handle</div>
+                <input type="text" id="handle" name="handle" required>
+            </div>
+            <div class="btn-group">
+                <button type="button" id="subscribe">Subscribe</button>
+                <button type="button" id="unsubscribe">Unsubscribe</button>
+            </div>
+            <span id="error" class="alert"></span>
+            <div class="alert" id="alert"> <i class="fa fa-warning"></i>
+                <span>Note: your contact information should be public on Codeforces. </span> <span class="step"> (profile -> Change settings -> Hide contact information) </span> <span> make sure is <b>unchecked </b></span></div>
+        </form>
+    </div>
+  <script src="js/index.js"></script>
+</body>
+</html>
