@@ -37,6 +37,8 @@ const transporter = nodemailer.createTransport({
   },
 });``
 
+// Delete user not verified from database
+
 cron.schedule('0 0 * * *', async () => {
   try {
     await User.deleteMany({ isVerified: false });
@@ -45,6 +47,7 @@ cron.schedule('0 0 * * *', async () => {
   }
 });
 
+// Check Codeforces rating for users
 cron.schedule('* * * * *', async () => {
   try {
     console.log("After 1 min");
