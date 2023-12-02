@@ -2,6 +2,7 @@ const User = require("../models/user");
 const otpGenerator = require("otp-generator");
 const nodemailer = require("nodemailer");
 const axios = require("axios");
+const cookie = require("cookie");
 
 // Create a Nodemailer transporter using SMTP
 const transporter = nodemailer.createTransport({
@@ -23,6 +24,10 @@ exports.postSubscribe = async (req, res, next) => {
       `https://codeforces.com/api/user.info?handles=${handle}`
     );
     const email = codeforcesRes.data.result[0].email;
+    if(email === undefined){
+      res.json({ error: "your contact information should be public" });
+      return;
+    }
     const oldUser = await User.findOne({ email });
     if (oldUser) {
       res.json({ error: "You are actually subscribed" });
@@ -43,29 +48,30 @@ exports.postSubscribe = async (req, res, next) => {
       text: `Your OTP for email verification is: ${otp}`,
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error("Error sending email:", error);
-      } else {
-        console.log("Email sent:", info.response);
-      }
-    });
+    // transporter.sendMail(mailOptions, (error, info) => {
+    //   if (error) {
+    //     console.error("Error sending email:", error);
+    //   } else {
+    //     console.log("Email sent:", info.response);
+    //   }
+    // });
 
-    res.setHeader(
-      "Set-Cookie",
-      cookie.serialize("email", email, {
-        sameSite: "None",
-        secure: true,
-        httpOnly: true,
-      })
-    );
+    // res.setHeader(
+    //   "Set-Cookie",
+    //   cookie.serialize("email", email, {
+    //     sameSite: "None",
+    //     secure: true,
+    //     httpOnly: true,
+    //     path: "/",
+    //   })
+    // );
 
-    res.cookie("email", email, {
-      httpOnly: true,
-      sameSite: "None",
-      secure: true,
-      path: "/",
-    });
+    // res.cookie("email", email, {
+    //   httpOnly: true,
+    //   sameSite: "None",
+    //   secure: true,
+    //   path: "/",
+    // });
 
     console.log(`otp in postSubscribe = ${otp}`);
     const rate = codeforcesRes.data.result[0].rating;
@@ -81,9 +87,12 @@ exports.postSubscribe = async (req, res, next) => {
     res.json({ message: "verfy your email", email });
   } catch (error) {
     console.log(error);
-    // if(error.response.data.comment === `handles: User with handle ${handle} not found`){
-    //   res.status(404).json({error : "User with this handle not found"});
-    // }
+    if (
+      error.response.data.comment ===
+      `handles: User with handle ${handle} not found`
+    ) {
+      res.status(404).json({ error: "User with this handle not found" });
+    }
   }
 };
 

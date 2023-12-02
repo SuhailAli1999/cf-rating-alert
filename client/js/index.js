@@ -44,6 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("alert").style.display = "none";
                     document.getElementById("error").style.backgroundColor = "#f36464";
                 }
+                else if (data.error == "your contact information should be public") {
+                    console.log("your contact information should be public");
+                    document.getElementById("error").innerText = "your contact information should be public";
+                    document.getElementById("error").style.display = "block";
+                    document.getElementById("error").style.backgroundColor = "#f36464";
+                }
                 else {
                     localStorage.setItem('email', data.email);
                     window.location.href = "http://127.0.0.1:5500/client/subscribeVerify.html";
